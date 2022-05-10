@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PascalUnits: StringUtilities</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">PascalUnits</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="license.html">License</a></li></ul></div><div class="content">
+<h1 class="unit">Unit StringUtilities</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section"><a class="section" href="#PasDoc-Variables">Variables</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+Some utility functions for strings.
+
+<p>This unit belongs to <a class="normal" href="introduction.html#docs_overview">PascalUnits</a> and is published under the <a class="normal" href="license.html#docs_license">BSD 3-Clause License</a>.
+
+<p>Dependencies: ./.</p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#StringToBoolean">StringToBoolean</a></strong>(str: string): boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#StringToStringArray">StringToStringArray</a></strong>(str, sep: string): <a href="StringUtilities.html#TStringArray">TStringArray</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#StringToIntegerArray">StringToIntegerArray</a></strong>(str, sep: string): <a href="StringUtilities.html#TIntegerArray">TIntegerArray</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#StringToFloatArray">StringToFloatArray</a></strong>(str, sep: string): <a href="StringUtilities.html#TFloatArray">TFloatArray</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#StringToBooleanArray">StringToBooleanArray</a></strong>(str, sep: string): <a href="StringUtilities.html#TBooleanArray">TBooleanArray</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="StringUtilities.html#Purge">Purge</a></strong>(str: string; strs: <a href="StringUtilities.html#TStringArray">TStringArray</a>): string;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#TStringToBooleanMap">TStringToBooleanMap</a></strong> = specialize TFPGMap&lt;string, boolean&gt;;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#TStringArray">TStringArray</a></strong> = array of string;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#TIntegerArray">TIntegerArray</a></strong> = array of integer;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#TFloatArray">TFloatArray</a></strong> = array of extended;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#TBooleanArray">TBooleanArray</a></strong> = array of boolean;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Variables"></span><h3 class="summary">Variables</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="StringUtilities.html#StringToBooleanMap">StringToBooleanMap</a></strong>: <a href="StringUtilities.html#TStringToBooleanMap">TStringToBooleanMap</a>;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToBoolean"></span><code>function <strong>StringToBoolean</strong>(str: string): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Convert a string to a boolean value.
+
+<p>The string is converted to lowercase before looked up in the <a class="normal" href="StringUtilities.html#StringToBooleanMap">StringToBooleanMap</a>.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">the boolean value</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if a value cannot be converted</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToStringArray"></span><code>function <strong>StringToStringArray</strong>(str, sep: string): <a href="StringUtilities.html#TStringArray">TStringArray</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Split a string into a string array.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+<dt>sep</dt>
+<dd>- the separator</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">string array</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if a value cannot be converted</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToIntegerArray"></span><code>function <strong>StringToIntegerArray</strong>(str, sep: string): <a href="StringUtilities.html#TIntegerArray">TIntegerArray</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Split a string into a integer array.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+<dt>sep</dt>
+<dd>- the separator</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">integer array</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if a value cannot be converted</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToFloatArray"></span><code>function <strong>StringToFloatArray</strong>(str, sep: string): <a href="StringUtilities.html#TFloatArray">TFloatArray</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Split a string into a float array.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+<dt>sep</dt>
+<dd>- the separator</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">float array</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if a value cannot be converted</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToBooleanArray"></span><code>function <strong>StringToBooleanArray</strong>(str, sep: string): <a href="StringUtilities.html#TBooleanArray">TBooleanArray</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Split a string into a boolean array.
+
+<p>Uses the <a class="normal" href="StringUtilities.html#StringToBoolean">StringToBoolean</a> function.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+<dt>sep</dt>
+<dd>- the separator</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">boolean array</p><h6 class="description_section">Exceptions raised</h6>
+<dl class="exceptions_raised">
+<dt><code>EConvertError</code></dt>
+<dd>if a value cannot be converted</dd>
+</dl>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="Purge"></span><code>function <strong>Purge</strong>(str: string; strs: <a href="StringUtilities.html#TStringArray">TStringArray</a>): string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Purge a string.
+
+<p>If <em>strs</em> is empty all consecutive whitespace characters will be replaced with a single space character.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>str</dt>
+<dd>- the string</dd>
+<dt>strs</dt>
+<dd>- strings to be removed from <em>str</em></dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">purged string</p></td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TStringToBooleanMap"></span><code><strong>TStringToBooleanMap</strong> = specialize TFPGMap&lt;string, boolean&gt;;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Type for mapping strings to booleans.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TStringArray"></span><code><strong>TStringArray</strong> = array of string;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of strings.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TIntegerArray"></span><code><strong>TIntegerArray</strong> = array of integer;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of integers.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TFloatArray"></span><code><strong>TFloatArray</strong> = array of extended;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of floats.</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TBooleanArray"></span><code><strong>TBooleanArray</strong> = array of boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Array of booleans.</p>
+</td></tr>
+</table>
+<h3 class="detail">Variables</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="StringToBooleanMap"></span><code><strong>StringToBooleanMap</strong>: <a href="StringUtilities.html#TStringToBooleanMap">TStringToBooleanMap</a>;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Mappings from strings to booleans.
+
+<p>This is used by the <a class="normal" href="StringUtilities.html#StringToBoolean">StringToBoolean</a> function and can be modified. The default values are:
+
+<p></p>
+
+<ul class="paragraph_spacing">
+  <li><p>'1', 't', 'true', 'on', 'y', 'yes', 'j', 'ja' -&gt; <code>True</code></p></li>
+  <li><p>'0', 'f', 'false', 'off', 'n', 'no', 'nein' -&gt; <code>False</code></p></li>
+</ul>
+
+<p></p>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PascalUnits: Gemina</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.16.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<div class="container"><div class="navigation">
+<h2><a href="index.html">PascalUnits</a></h2><ul><li><a href="AllUnits.html">Units</a></li><li><a href="ClassHierarchy.html">Class Hierarchy</a></li><li><a href="AllClasses.html">Classes, Interfaces, Objects and Records</a></li><li><a href="AllTypes.html">Types</a></li><li><a href="AllVariables.html">Variables</a></li><li><a href="AllConstants.html">Constants</a></li><li><a href="AllFunctions.html">Functions and Procedures</a></li><li><a href="AllIdentifiers.html">Identifiers</a></li><li><a href="license.html">License</a></li></ul></div><div class="content">
+<h1 class="unit">Unit Gemina</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section">Uses</div><div class="one_section">Classes, Interfaces, Objects and Records</div><div class="one_section"><a class="section" href="#PasDoc-FuncsProcs">Functions and Procedures</a></div><div class="one_section"><a class="section" href="#PasDoc-Types">Types</a></div><div class="one_section">Constants</div><div class="one_section">Variables</div></div>
+<span id="PasDoc-Description"></span><h2 class="description">Description</h2>
+<p>
+Implementation of the <a href="https://github.com/andreas19/gemina-spec">Gemina</a> specification for data encryption.
+
+<p>For more details see the section <a href="https://github.com/andreas19/gemina-spec#description">Description</a>.
+
+<p>This unit belongs to <a class="normal" href="introduction.html#docs_overview">PascalUnits</a> and is published under the <a class="normal" href="license.html#docs_license">BSD 3-Clause License</a>.
+
+<p>Dependencies: <a href="https://github.com/Xor-el/CryptoLib4Pascal">CryptoLib4Pascal</a> package.</p>
+<span id="PasDoc-Uses"></span><h2 class="overview">Overview</h2>
+<span id="PasDoc-FuncsProcs"></span><h3 class="summary">Functions and Procedures</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#CreateSecretKey">CreateSecretKey</a></strong>(version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#DecryptWithKey">DecryptWithKey</a></strong>(key, data: TBytes): TBytes;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#DecryptWithPassword">DecryptWithPassword</a></strong>(password, data: TBytes): TBytes;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#EncryptWithKey">EncryptWithKey</a></strong>(key, data: TBytes; version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#EncryptWithPassword">EncryptWithPassword</a></strong>(password, data: TBytes; version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr class="list2">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#VerifyWithKey">VerifyWithKey</a></strong>(key, data: TBytes): boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="itemcode"><code>function <strong><a href="Gemina.html#VerifyWithPassword">VerifyWithPassword</a></strong>(password, data: TBytes): boolean;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Types"></span><h3 class="summary">Types</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="itemcode"><code><strong><a href="Gemina.html#TVersion">TVersion</a></strong> = (...);</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Functions and Procedures</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="CreateSecretKey"></span><code>function <strong>CreateSecretKey</strong>(version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Create a secret key. It can be used with the functions <a class="normal" href="Gemina.html#EncryptWithKey">EncryptWithKey</a>, <a class="normal" href="Gemina.html#DecryptWithKey">DecryptWithKey</a>, and <a class="normal" href="Gemina.html#VerifyWithKey">VerifyWithKey</a>.
+
+<p> </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>version</dt>
+<dd>- the version</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">the secret key</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DecryptWithKey"></span><code>function <strong>DecryptWithKey</strong>(key, data: TBytes): TBytes;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Decrypt data with a secret key.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>key</dt>
+<dd>- the secret key</dd>
+<dt>data</dt>
+<dd>- the data to decrypt</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">decrypted data or <code>Nil</code> if decryption failed</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="DecryptWithPassword"></span><code>function <strong>DecryptWithPassword</strong>(password, data: TBytes): TBytes;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Decrypt data with a password.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>password</dt>
+<dd>- the password</dd>
+<dt>data</dt>
+<dd>- the data to decrypt</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">decrypted data or <code>Nil</code> if decryption failed</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="EncryptWithKey"></span><code>function <strong>EncryptWithKey</strong>(key, data: TBytes; version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Encrypt data with a secret key.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>key</dt>
+<dd>- the secret key</dd>
+<dt>data</dt>
+<dd>- the data to encrypt</dd>
+<dt>version</dt>
+<dd>- the version</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">encrypted data or <code>Nil</code> if encryption failed</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="EncryptWithPassword"></span><code>function <strong>EncryptWithPassword</strong>(password, data: TBytes; version: <a href="Gemina.html#TVersion">TVersion</a>): TBytes;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Encrypt data with a password.
+
+<p>   </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>password</dt>
+<dd>- the password</dd>
+<dt>data</dt>
+<dd>- the data to encrypt</dd>
+<dt>version</dt>
+<dd>- the version</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return">encrypted data or <code>Nil</code> if encryption failed</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="VerifyWithKey"></span><code>function <strong>VerifyWithKey</strong>(key, data: TBytes): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Verify data with a secret key.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>key</dt>
+<dd>- the secret key</dd>
+<dt>data</dt>
+<dd>- the data</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if secret key, authenticity and integrity are okay</p></td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="VerifyWithPassword"></span><code>function <strong>VerifyWithPassword</strong>(password, data: TBytes): boolean;</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Verify data with a password.
+
+<p>  </p>
+<h6 class="description_section">Parameters</h6>
+<dl class="parameters">
+<dt>password</dt>
+<dd>- the password</dd>
+<dt>data</dt>
+<dd>- the data</dd>
+</dl>
+<h6 class="description_section">Returns</h6>
+<p class="return"><code>True</code> if secret key, authenticity and integrity are okay</p></td></tr>
+</table>
+<h3 class="detail">Types</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="itemcode"><span id="TVersion"></span><code><strong>TVersion</strong> = (...);</code></td>
+</tr>
+<tr><td colspan="1">
+<p>
+Version enum.</p>
+<h6 class="description_section">Values</h6>
+<ul>
+<li>
+<span id="Version1">Version1</span></li>
+<li>
+<span id="Version2">Version2</span></li>
+<li>
+<span id="Version3">Version3</span></li>
+<li>
+<span id="Version4">Version4</span></li>
+</ul>
+</td></tr>
+</table>
+<hr><span class="appinfo"><em>Generated by <a href="https://pasdoc.github.io/">PasDoc 0.16.0</a>. </em>
+</span>
+</div></div></body></html>
