@@ -15,17 +15,21 @@ uses
   Classes, SysUtils, getopts, Math, StrUtils;
 
 type
+  { Array of integers. }
   TIntegerArray = array of integer;
+  { Array of floats. }
   TFloatArray = array of extended;
+  { Array of strings. }
   TStringArray = array of string;
+  { Error in the definition of command line arguments. }
   ECmdLineArgsException = class(Exception);
+  { @exclude }
+  TArgKind = (akFlag, akOption, akPositional);
 
-  { TCmdLineArgs }
-
+  { Class for defining command line arguments. }
   TCmdLineArgs = class
   private
   type
-    TArgKind = (akFlag, akOption, akPositional);
     PArg = ^TArg;
 
     TArg = record
@@ -67,23 +71,84 @@ type
     function GetString(arg: PArg): string;
     function GetStrings(arg: PArg): TStringArray;
   public
-    constructor Create(description, epilog, version: string;
+    { Constructor.
+
+      @param(description - short description of the program)
+      @param(epilog - displayed at the end of the help text)
+      @param(version - required when @link(AddVersion) is used)
+      @param(usage - the usage string in the first line after
+             @code(USAGE: <program name>)) }
+    constructor Create(description: string;
+      epilog: string = ''; version: string = '';
       usage: string = '[FLAG | OPTION | POSITIONAL ARGUMENT] ...');
+
+    { Add a flag.
+
+      A flag can be used on the command line by prefixing its name with
+      '@--' or the abbrevation character with '-'. Either the name or the
+      abbrevation can be set to '' or #0 respectively so that it is not used.
+
+      @param(name - name of the flag)
+      @param(abbr - abbrevation)
+      @param(help - help text)
+      @param(multiple - if @true the flag can be used multiple times) }
     procedure AddFlag(name: string; abbr: char; help: string;
       multiple: boolean = False);
+
+    { Add an option.
+
+      An option can be used on the command line by prefixing its name with
+      '@--' or the abbrevation character with '-'. Either the name or the
+      abbrevation can be set to '' or #0 respectively so that it is not used.
+
+      @param(name - name of the option)
+      @param(abbr - abbrevation)
+      @param(help - help text)
+      @param(value - if not the empty string, it is the value when the
+             option is used like a flag (w/o a value))
+      @param(required - if @true it must be used at least once)
+      @param(multiple - if @true the option can be used multiple times) }
     procedure AddOption(name: string; abbr: char; help: string;
       value: string = ''; required: boolean = False;
       multiple: boolean = False);
+
+    { Add a postional argument.
+
+      @param(name - name of the argument)
+      @param(help - help text)
+      @param(value - default value)
+      @param(required - if @true it must be used at least once)
+      @param(multiple - if @true the option can be used multiple times)
+      @param(metavar - shown in the help text instead of the name) }
     procedure AddPositional(name, help: string; value: string = '';
       required: boolean = False; multiple: boolean = False;
       metavar: string = '');
+
+    { Add a help flag.
+
+      @param(name - name of the flag)
+      @param(abbr - abbrevation)
+      @param(help - help text) }
     procedure AddHelp(name: string = 'help'; abbr: char = 'h';
       help: string = 'show this help message and exit');
+
+    { Add a version flag.
+
+      @param(name - name of the flag)
+      @param(abbr - abbrevation)
+      @param(help - help text) }
     procedure AddVersion(name: string = 'version'; abbr: char = 'V';
       help: string = 'show version and exit');
+
+    { Parse the command line. }
     procedure Parse;
+
+    { Check if a flag/option/positional argument was set on the command line. }
     function HasName(name: string): boolean;
+
+    { Check if a flag/option/positional argument was set on the command line. }
     function HasAbbr(abbr: char): boolean;
+
     function IsFlagSet(name: string): boolean;
     function IsFlagSet(abbr: char): boolean;
     function GetFlagCount(name: string): integer;

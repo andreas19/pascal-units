@@ -15,22 +15,39 @@ uses
   SysUtils, fgl;
 
 type
+  { Type for mapping strings to booleans. }
   TStringToBooleanMap = specialize TFPGMap<string, boolean>;
 
 var
+  { Mappings from strings to booleans.
+
+    This is used by the @link(StringToBoolean) function and can be modified.
+    The default values are:
+
+    @unorderedList(
+      @item('1', 't', 'true', 'on', 'y', 'yes', 'j', 'ja' -> @true)
+      @item('0', 'f', 'false', 'off', 'n', 'no', 'nein' -> @false)) }
   StringToBooleanMap: TStringToBooleanMap;
 
-function StringToBoolean(s: string; var b: boolean): boolean;
+{ Convert a string to a boolean value.
+
+  The string is converted to lowercase before looked up in the
+  @link(StringToBooleanMap).
+
+  @param(str - the string)
+  @param(bool - the boolean value)
+  @returns(@true if str was found in the map, @false otherwise) }
+function StringToBoolean(str: string; var bool: boolean): boolean;
 
 implementation
 
-function StringToBoolean(s: string; var b: boolean): boolean;
+function StringToBoolean(str: string; var bool: boolean): boolean;
 var
   idx: integer;
 begin
-  idx := StringToBooleanMap.IndexOf(s);
+  idx := StringToBooleanMap.IndexOf(str);
   Result := idx >= 0;
-  if Result then b := StringToBooleanMap.Data[idx];
+  if Result then bool := StringToBooleanMap.Data[idx];
 end;
 
 initialization

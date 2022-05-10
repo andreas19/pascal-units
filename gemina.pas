@@ -28,21 +28,56 @@ type
   { Version enum. }
   TVersion = (Version1, Version2, Version3, Version4);
 
-{ Create a secret key for the given version. It can be used with the functions
-  @link(EncryptWithKey), @link(DecryptWithKey), and @link(VerifyWithKey). }
+{ Create a secret key. It can be used with the functions
+  @link(EncryptWithKey), @link(DecryptWithKey), and @link(VerifyWithKey).
+
+  @param(version - the version)
+  @returns(the secret key) }
 function CreateSecretKey(version: TVersion): TBytes;
-{ Decrypt data with the given secret key. }
+
+{ Decrypt data with a secret key.
+
+  @param(key - the secret key)
+  @param(data - the data to decrypt)
+  @returns(decrypted data or @nil if decryption failed) }
 function DecryptWithKey(key, data: TBytes): TBytes;
-{ Decrypt data with the given password. }
+
+{ Decrypt data with a password.
+
+  @param(password - the password)
+  @param(data - the data to decrypt)
+  @return(decrypted data or @nil if decryption failed) }
 function DecryptWithPassword(password, data: TBytes): TBytes;
-{ Encrypt data with the given secret key and version. }
+
+{ Encrypt data with a secret key.
+
+  @param(key - the secret key)
+  @param(data - the data to encrypt)
+  @param(version - the version)
+  @returns(encrypted data or @nil if encryption failed) }
 function EncryptWithKey(key, data: TBytes; version: TVersion): TBytes;
-{ Encrypt data with the given password and version. }
+
+{ Encrypt data with a password.
+
+  @param(password - the password)
+  @param(data - the data to encrypt)
+  @param(version - the version)
+  @returns(encrypted data or @nil if encryption failed) }
 function EncryptWithPassword(password, data: TBytes;
   version: TVersion): TBytes;
-{ Verify data with the given secret key. }
+
+{ Verify data with a secret key.
+
+  @param(key - the secret key)
+  @param(data - the data)
+  @returns(@true if secret key, authenticity and integrity are okay) }
 function VerifyWithKey(key, data: TBytes): boolean;
-{ Verify data with the given password. }
+
+{ Verify data with a password.
+
+  @param(password - the password)
+  @param(data - the data)
+  @returns(@true if secret key, authenticity and integrity are okay) }
 function VerifyWithPassword(password, data: TBytes): boolean;
 
 implementation
