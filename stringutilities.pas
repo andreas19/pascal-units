@@ -12,11 +12,19 @@ unit StringUtilities;
 interface
 
 uses
-  SysUtils, fgl;
+  SysUtils, fgl, RegExpr;
 
 type
   { Type for mapping strings to booleans. }
   TStringToBooleanMap = specialize TFPGMap<string, boolean>;
+  { Array of strings. }
+  TStringArray = array of string;
+  { Array of integers. }
+  TIntegerArray = array of integer;
+  { Array of floats. }
+  TFloatArray = array of extended;
+  { Array of booleans. }
+  TBooleanArray = array of boolean;
 
 var
   { Mappings from strings to booleans.
@@ -35,19 +43,115 @@ var
   @link(StringToBooleanMap).
 
   @param(str - the string)
-  @param(bool - the boolean value)
-  @returns(@true if str was found in the map, @false otherwise) }
-function StringToBoolean(str: string; var bool: boolean): boolean;
+  @returns(the boolean value)
+  @raises(EConvertError if a value cannot be converted) }
+function StringToBoolean(str: string): boolean;
+
+{ Split a string into a string array.
+
+  @param(str - the string)
+  @param(sep - the separator)
+  @returns(string array)
+  @raises(EConvertError if a value cannot be converted) }
+function StringToStringArray(str, sep: string): TStringArray;
+
+{ Split a string into a integer array.
+
+  @param(str - the string)
+  @param(sep - the separator)
+  @returns(integer array)
+  @raises(EConvertError if a value cannot be converted) }
+function StringToIntegerArray(str, sep: string): TIntegerArray;
+
+{ Split a string into a float array.
+
+  @param(str - the string)
+  @param(sep - the separator)
+  @returns(float array)
+  @raises(EConvertError if a value cannot be converted) }
+function StringToFloatArray(str, sep: string): TFloatArray;
+
+{ Split a string into a boolean array.
+
+  Uses the @link(StringToBoolean) function.
+
+  @param(str - the string)
+  @param(sep - the separator)
+  @returns(boolean array)
+  @raises(EConvertError if a value cannot be converted) }
+function StringToBooleanArray(str, sep: string): TBooleanArray;
+
+{ Purge a string.
+
+  If @italic(strs) is empty all consecutive whitespace characters will be
+  replaced with a single space character.
+
+  @param(str - the string)
+  @param(strs - strings to be removed from @italic(str))
+  @returns(purged string) }
+function Purge(str: string; strs: TStringArray): string;
 
 implementation
 
-function StringToBoolean(str: string; var bool: boolean): boolean;
+function StringToBoolean(str: string): boolean;
 var
   idx: integer;
 begin
-  idx := StringToBooleanMap.IndexOf(str);
-  Result := idx >= 0;
-  if Result then bool := StringToBooleanMap.Data[idx];
+  idx := StringToBooleanMap.IndexOf(LowerCase(str));
+  if idx < 0 then raise EConvertError.Create('"' + str +'" not found');
+  Result := StringToBooleanMap.Data[idx];
+end;
+
+function StringToStringArray(str, sep: string): TStringArray;
+var i: integer;
+begin
+  Result := str.Split([sep]);
+  for i := 0 to length(Result) - 1 do
+    Result[i] := Trim(Result[i]);
+end;
+
+function StringToIntegerArray(str, sep: string): TIntegerArray;
+var
+  i: integer;
+  ar: TStringArray;
+begin
+  ar := StringToStringArray(str, sep);
+  Result := TIntegerArray.create;
+  setLength(Result, length(ar));
+  for i := 0 to length(ar) - 1 do
+    Result[i] := ar[i].ToInteger;
+end;
+
+function StringToFloatArray(str, sep: string): TFloatArray;
+var
+  i: integer;
+  ar: TStringArray;
+begin
+  ar := StringToStringArray(str, sep);
+  Result := TFloatArray.create;
+  setLength(Result, length(ar));
+  for i := 0 to length(ar) - 1 do
+    Result[i] := ar[i].ToExtended;
+end;
+
+function StringToBooleanArray(str, sep: string): TBooleanArray;
+var
+  i: integer;
+  ar: TStringArray;
+begin
+  ar := StringToStringArray(str, sep);
+  Result := TBooleanArray.create;
+  setLength(Result, length(ar));
+  for i := 0 to length(ar) - 1 do
+    Result[i] := StringToBoolean(ar[i]);
+end;
+
+function Purge(str: string; strs: TStringArray): string;
+begin
+  if length(strs) = 0 then
+    Result := ReplaceRegExpr('\s+', str, ' ')
+  else
+    Result := ReplaceRegExpr('(?:' + ''.Join('|', strs) + ')', str, '');
 end;
 
 initialization
